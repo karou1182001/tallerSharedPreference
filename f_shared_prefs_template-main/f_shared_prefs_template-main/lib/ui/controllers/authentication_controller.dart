@@ -24,10 +24,15 @@ class AuthenticationController extends GetxController {
 
   Future<bool> login(user, password) async {
     //Verificamos si el user y password coinciden con los almacenados
-    
-    var log= await _authentication.login(user, password);
+    var log=await _authentication.login(user, password);
+    if (log) 
+    {
+      _logged.value=true;
+    } else {
+      _logged.value=false;
+    }
     //_logged = true as RxBool;
-    _logged.value=true;
+    
     return log;
     
   }
