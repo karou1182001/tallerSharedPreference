@@ -1,6 +1,9 @@
+import 'package:f_shared_prefs_template/ui/pages/authentication/login_page.dart';
+import 'package:f_shared_prefs_template/ui/pages/home/content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'controllers/authentication_controller.dart';
 import 'pages/authentication/signup_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -13,7 +16,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: Content(),
-      home: SignUpPage(),
-    );
+      home: GetX<AuthenticationController>(
+          builder: (controller) {
+            if (controller.logged) {
+              return Content();
+            }
+            return LoginPage();
+          },
+        ));
   }
 }
